@@ -69,14 +69,21 @@ def autocomplete():
 
 
 # ── Serve React (production build) ─────────────────────────────
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react(path):
-    dist = os.path.join(os.path.dirname(__file__), 'frontend', 'dist')
-    if path and os.path.exists(os.path.join(dist, path)):
-        return send_from_directory(dist, path)
-    return send_from_directory(dist, 'index.html')
 
+    dist_dir = os.path.join(app.root_path, 'frontend', 'dist')
+
+    file_path = os.path.join(dist_dir, path)
+
+    # If requested file exists, serve it
+    if path != "" and os.path.exists(file_path):
+        return send_from_directory(dist_dir, path)
+
+    # Otherwise serve React index.html
+    return send_from_directory(dist_dir, 'index.html')
 
 # ── Run ─────────────────────────────────────────────────────────
 if __name__ == '__main__':
