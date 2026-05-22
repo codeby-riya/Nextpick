@@ -1,0 +1,48 @@
+/* ── DESIGN TOKENS ─────────────────────────────── */
+:root {
+  --bg:           #0c0b0f;
+  --surface:      #15131c;
+  --surface-2:    #1e1b2a;
+  --border:       rgba(255,255,255,0.07);
+  --accent:       #c084fc;
+  --accent-2:     #f0abfc;
+  --gold:         #fbbf24;
+  --text:         #f1effe;
+  --muted:        #8b82a8;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --radius:       14px;
+  --transition:   0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(192,132,252,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192,132,252,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+
+#root { position:relative; z-index:1; }
+img   { display:block; max-width:100%; }
+a     { text-decoration:none; color:inherit; }
+
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--surface-2); border-radius:99px; }
